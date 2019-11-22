@@ -1,0 +1,183 @@
+.background-welcome {
+    background: url("../../assets/damn.png") no-repeat center center;
+    background-size:cover;
+    width:100%;
+    height:100%;
+  }
+
+  @font-face {
+    font-family: caviar;
+    src: url("../../assets/CaviarDreams.ttf");
+  }
+  
+  .button-welcome {
+    display: inline-block;
+    font-family: caviar !important;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    padding: 1.3em 1.6em;
+    display: flex;
+    align-items: flex-start;
+    background: #009ED8;
+    border: none;
+    color: rgb(224, 45, 45);
+    transition: 0.2s;
+  }
+  .button-welcome:before,
+  .button-welcome:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    width: 2.8em;
+    content: "\00a0";
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+    transition: 0.2s;
+    transform-origin: 50% 60%;
+  }
+  
+  .button-welcome:hover {
+    background: #0079a5;
+  }
+  .button-welcome:active,
+  .button-welcome:focus {
+    background: #002e3f;
+    outline: none;
+  }
+  .button-welcome {
+    min-width: 15em;
+  }
+  .arrow {
+    background: white;
+  }
+  .arrow:hover {
+    background: white;
+  }
+  .arrow:active,
+  .arrow:focus {
+    background: white;
+  }
+  .arrow:after {
+    padding-bottom: 20px;
+    color: rgb(224, 45, 45);
+    content: "»»";
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-right:10px;
+  }
+  .arrow:after {
+    -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+  }
+  
+  .button-welcome {
+    box-shadow:0px 0px 1px black;
+    width:70%;
+    border-radius:5px;
+  }
+  
+  .smoke-welcome {
+    left: 64% !important;
+    top: 60% !important;
+    position: absolute;
+  }
+  
+  @-webkit-keyframes bounceright {
+    from {
+      -webkit-transform: translateX(0);
+    }
+    to {
+      -webkit-transform: translateX(3px);
+    }
+  }
+  
+  .container {
+    width:100%;
+    height:35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    bottom:5vh;
+  }
+  
+  @font-face {
+    font-family: "font";
+    src: url(../../assets/font-login.otf);
+  }
+  
+  @font-face {
+    font-family: "title";
+    src: url(../../assets/inlanders.otf);
+  }
+  
+  .cookcrawler {
+    margin-bottom: 4vh;
+    margin-top: 10vh;
+    min-width: 100%;
+    margin-left: 49px;
+    font-size: 5.5vh;
+    text-shadow: 1px 1px 0px #2a2a2a;
+    color: white;
+    font-family: "title";
+  }
+  
+  
+  @keyframes float {
+      0% {
+          box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+          transform: translatey(0px);
+      }
+      50% {
+          box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+          transform: translatey(-20px);
+      }
+      100% {
+          box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+          transform: translatey(0px);
+      }
+  }
+  
+  #smoke span {
+    display: block;
+      position: absolute;
+      bottom: 15px !important; left: 45%; margin-left:-14vw;
+      height: 0px; width: 0px;
+      border: 10vh solid #eaecd2ab;
+      border-radius: 35px;
+      left: -14px; opacity: 0;
+      transform: scale(0.2);
+  }
+  
+  /* Smoke animation */
+  
+  @keyframes smokeL {
+      0%   { transform: scale(0.2) translate(0, 0) }
+      10%  { opacity: 1; transform: scale(0.2) translate(0, -5px) }
+      100% { opacity: 0; transform: scale(1) translate(-20px, -130px) }
+  }
+  
+  @keyframes smokeR {
+      0%   { transform: scale(0.2) translate(0, 0) }
+      10%  { opacity: 1; transform: scale(0.2) translate(0, -5px) }
+      100% { opacity: 0; transform: scale(1) translate(20px, -130px) }
+  }
+  
+  #smoke .s0 { animation: smokeL 10s 0s infinite }
+  #smoke .s1 { animation: smokeR 10s 1s infinite }
+  #smoke .s2 { animation: smokeL 10s 2s infinite }
+  #smoke .s3 { animation: smokeR 10s 3s infinite }
+  #smoke .s4 { animation: smokeL 10s 4s infinite }
+  #smoke .s5 { animation: smokeR 10s 5s infinite }
+  #smoke .s6 { animation: smokeL 10s 6s infinite }
+  #smoke .s7 { animation: smokeR 10s 7s infinite }
+  #smoke .s8 { animation: smokeL 10s 8s infinite }
+  #smoke .s9 { animation: smokeR 10s 9s infinite }

@@ -1,0 +1,47 @@
+<ion-header class="toolbar-background" style="height:45%;">  
+      <ion-grid class="align-center flex">
+        <ion-row>
+          <ion-col size="12" class="align-center flex photo">
+            <div class="align-center flex">
+              <div class="border-profile-picture"></div>
+              <img src="{{users.picture.data.url}}" class="profile-pic"/>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="align-center name-tag">
+              <b>{{users.name}}</b>
+              <br/>
+              <label class="description"> Gastrônomo </label>
+              <label class="description" style="margin-left:5px; background-color:rgb(3, 134, 173);"> VIP </label>
+            </ion-col>
+          </ion-row>
+  
+        <ion-row class="trophys">
+            <ion-col size="4" class="align-center icon-margin star">
+              <img src="../../assets/star.svg" width="32px"/>
+              <br/>
+              <span style="font-size:12px;">5/70</span>
+            </ion-col>
+            <ion-col size="4" class="align-center icon-margin award">
+              <img src="../../assets/award.svg" width="32px"/>
+              <br/>
+              <span style="font-size:12px;">10293º</span>
+            </ion-col>
+            <ion-col size="4" class="align-center icon-margin money">
+              <img src="../../assets/money.svg" width="32px"/>
+              <br/>
+              <span style="font-size:12px;">R$120,76</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+  </ion-header>
+  <ion-content class="align-center flex no-border">
+      <ion-card class="align-center flex column no-border">
+          <img src="../../assets/img/welcome-page.svg" class="intro-image"/>
+          <ion-card-header>
+            <ion-card-content>Olha! Você de novo! Bem-vindo!</ion-card-content>
+          </ion-card-header>
+      </ion-card>
+  </ion-content>

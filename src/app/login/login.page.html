@@ -1,0 +1,48 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+
+  </div>
+  <div class="prato">
+    <img src="../../assets/prato.png" width="70%"/>
+    <div id="smoke">
+        <span class="s0"></span>
+        <span class="s1"></span>
+        <span class="s2"></span>
+        <span class="s3"></span>
+        <span class="s4"></span>
+        <span class="s5"></span>
+        <span class="s6"></span>
+        <span class="s7"></span>
+        <span class="s8"></span>
+        <span class="s9"></span>
+      </div>
+  </div>
+
+  <div class="text-before-option">
+    <div class="container-login">
+        <div class="material-textfield">
+          <input id="nome-textfield" placeholder=" " type="text">
+          <label id="nome">E-mail</label>
+        </div>
+        <div class="material-textfield">
+          <input id="nome-textfield" placeholder=" " type="password">
+          <label id="nome">Senha</label>
+        </div>
+        <button ion-button class="button-login" routerLink="/tabs/tab1" routerDirection="root">Entrar</button>
+        <div class="terms">Não possui uma conta? <b>Cadastre-se</b>.</div>
+      </div>
+       <div class="go-to-bottom">
+         <span class="or-enter-with">ou</span>
+         <div class="login-type-button">
+            <button ion-button class="button-login-facebook" (click)="onLoginFacebook()"><img src="../../assets/fb.png" width="24px" style="margin-right:10px;"/> Entrar com Facebook</button>
+            <button class="button-login-google"><img src="../../assets/google.png" width="24px" style="margin-right:10px;"/> Entrar com Google</button>
+        </div>
+        <span class="copyright">© Copyright 2019 Eduardo Schneider - All Rights Reserved</span>
+       </div>
+  </div>
+
+</ion-content>
+

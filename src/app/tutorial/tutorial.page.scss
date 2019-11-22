@@ -1,0 +1,61 @@
+@font-face {
+    font-family: caviar;
+    src: url("../../assets/GeosansLight.ttf");
+  }
+  
+  * {
+    font-family: caviar;
+  }
+
+.slide {
+    background-image: url('../../assets/bg-tutorial.png'); background-size:cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.slide-image {
+    display: flex;
+    justify-content: center;
+    width:100%;
+    height:30%;
+    margin-top:5%;
+}
+
+.slide-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    height:40%;
+}
+
+.swiper-slide img {
+    max-width: 70% !important;
+}
+
+.title {
+    margin-top:-50px;
+    font-weight: bold;
+    font-size:23px;
+}
+
+.content {
+    padding-left:40px;
+    padding-right:40px;
+    font-size:20px;
+}
+
+.button-comecar {
+    background-color: #E23D3D;
+    width: 100%;
+    padding-left:50px;
+    padding-right:50px;
+    height: 41px;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    
+  }

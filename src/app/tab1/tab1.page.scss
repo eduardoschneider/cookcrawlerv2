@@ -1,0 +1,155 @@
+@font-face {
+  font-family: caviar;
+  src: url("../../assets/GeosansLight.ttf");
+}
+
+* {
+  font-family: caviar;
+}
+
+.align-center {
+  text-align: center;
+  align-items:center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.profile-pic {
+  border-radius: 100%;
+  border: 2px solid white;
+  width:11.2vh;
+  height:11.3vh;
+}
+
+.border-profile-picture {
+  width:13vh;
+  height:13vh;
+  border-radius:100%;
+  border:2px dashed black;
+  position: absolute;
+  animation: spin 25s infinite linear;
+}
+
+.name-tag {
+  font-family: caviar;
+    color: black;
+    line-height: 23px;
+    font-size: 15px;
+}
+
+.description {
+  color: #fff;
+  font-size:12px;
+  background-color: #E23D3D;
+  margin-top:3px;
+    padding: 4px;
+    padding-left:7px;
+    padding-right: 7px;
+    border-radius: 5px;
+}
+
+.trophys {
+  background-color: white;
+  border-radius:10px 10px 0 0;
+  width:90%;
+  height:60px;
+  position: absolute   !important;
+  left: 5%;
+  bottom:-4px;
+  font-weight: 700;
+  padding-bottom: 70px !important;
+}
+
+.photo {
+  margin-top:40px;
+}
+
+  .toolbar {
+    height:40vh !important;
+
+  }
+
+  .card-md, .card-ios {
+    box-shadow:none;
+    margin-top: 4vh;
+  }
+
+  .text-content-list-master {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-left:3vw;
+    padding-right:3vw;
+    height:100%;
+    font-weight:100;
+    font-size:13px;
+    padding-bottom:2vw;
+    overflow: hidden;
+  }
+
+  .toolbar-background, .toolbar-background-md, .toolbar-background-ios {
+    height:100vh;
+    background-color: #beffb3;
+    background-image: url("../../assets/bg-main.png");
+    background-attachment: fixed !important;
+    background-size: cover !important;
+  }
+
+
+.content-main-page{
+  background-color:white;
+}
+.header, .scroll-content {
+  background-color:transparent;
+}
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+  background-position: left 0 top -24px !important;
+
+}
+
+.icon-margin {
+  margin-top:7px;
+}
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+.intro-image {
+  width: 40vh;
+  margin-top:5vh;
+}
+
+.star, .award, .money, .intro-image {
+  animation: fadein 1.2s normal linear;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.no-border {
+  -webkit-box-shadow: none; 
+  box-shadow: none;
+  overflow: hidden !important;
+  --overflow: hidden !important;
+}
