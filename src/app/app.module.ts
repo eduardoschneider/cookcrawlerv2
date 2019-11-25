@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { LoadingController } from '@ionic/angular';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,8 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
     Facebook,
     NativeStorage,
     NativeAudio,
+    LoadingController,
+    HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

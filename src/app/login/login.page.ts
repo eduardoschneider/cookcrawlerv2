@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,26 @@ export class LoginPage implements OnInit {
 
   isLoggedIn = false;
 
-  constructor(private fb: Facebook, private router: Router, private nativeStorage: NativeStorage) { }
+  constructor(private fb: Facebook, private router: Router,
+              private nativeStorage: NativeStorage, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
 
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Carregando...',
+      duration: 2000,
+      showBackdrop: true,
+      animated: true,
+      spinner: 'crescent',
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+
+    console.log('Loading dismissed!');
   }
 
   onLoginFacebook() {
@@ -46,4 +63,5 @@ export class LoginPage implements OnInit {
         console.log(e);
       });
   }
+
 }
