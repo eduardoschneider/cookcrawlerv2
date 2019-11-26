@@ -1,9 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>preparacao-receita</ion-title>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-slides style="height:100vh; background-image: url('../../assets/bg-tutorial.png');" pager="true" [options]="slideOpts">
+        <ion-slide class="slide intro" style="align-items: flex-start !important;"> 
+            <div class="intro-header">
+                 <label class="intro-title">Salada de Espinafre</label>
+                 <label class="intro-subtitle">por Eduardo Schneider</label>   
+            </div>
+        </ion-slide>
 
+        <ion-slide class="slide">
+            <div class="slide-image">
+                1º passo
+            </div>
+            <div class="slide-content">
+                <label class="title">Bem-vindo ao CookCrawler!</label>
+                <br/>
+                <span class="content">O <b>CookCrawler</b> é um software que visa ajudar você a preparar novas receitas apenas com os ingredientes que possui em casa!>O <b>CookCrawler</b> é um software que visa ajudar você a preparar novas receitas apenas com os ingredientes que possui em casa!>O <b>CookCrawler</b> é um software que visa ajudar você a preparar novas receitas apenas com os ingredientes que possui em casa!>O <b>CookCrawler</b> é um software que visa ajudar você a preparar novas receitas apenas com os ingredientes que possui em casa!</span>
+            </div>
+        </ion-slide>
+    </ion-slides>
 </ion-content>
