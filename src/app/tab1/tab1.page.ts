@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SingletonService } from '../singleton.service';
 
 @Component({
   selector: 'app-tab1',
@@ -8,21 +9,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class Tab1Page implements OnInit {
   users = { id: '', name: '', email: '', picture: { data: { url: '' } } };
-  constructor(private route: ActivatedRoute, private router: Router) {  }
-
-  points = 5;
-  ranking = 10659;
-  money = 20;
+  constructor(private route: ActivatedRoute, private router: Router, private single: SingletonService) {  }
+  points;
+  ranking;
+  money;
 
   ngOnInit() {
-    this.points += 5;
-    this.ranking -= 7;
-    this.money += 21;
+    this.points = this.single.set(5);
+    this.ranking = this.single.set2(7);
+    this.money = this.single.set3(21);
+
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
-        this.users = this.router.getCurrentNavigation().extras.state.user;
-        this.users.picture.data.url = 'https://graph.facebook.com/' + this.users.id + '/picture?width=1024&height=1024';
+        this.single.saveUser(this.router.getCurrentNavigation().extras.state.user,
+         'https://graph.facebook.com/' + this.router.getCurrentNavigation().extras.state.user.id + '/picture?width=1024&height=1024');
       }
     });
+
+    this.users = this.single.getUser();
   }
+
 }

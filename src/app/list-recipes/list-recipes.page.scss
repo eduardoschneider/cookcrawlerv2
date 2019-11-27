@@ -1,0 +1,99 @@
+@font-face {
+    font-family: caviar;
+    src: url("../../assets/GeosansLight.ttf");
+  }
+  
+  * {
+      font-family:caviar !important;
+      font-weight: bold;
+  }
+    .background-list-recipes {
+      background-image: none;
+      background-color:white;
+      height: 99vh;
+      overflow-y: auto;
+    }
+  
+    ion-card-header  {
+      background-image: url("../../assets/bg-card.jpg");
+      background-size: cover;
+      height: 78px;
+      background-position: center;
+    }
+  
+    .divisoria {
+      height:20px;
+      width:100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .line {
+      height:1px;
+      background-color: #a5a3a3;
+      width:25%;
+  
+    }
+    
+    .card-bottom {
+      width:100%;
+      height:25px;
+      background-color: #f7f4f1;
+      display: flex;
+      align-items: center;
+      padding-left:14px;
+    }
+  
+    .tempo-preparo {
+      display: flex;
+      flex-direction: row;
+      font-size:12px;
+      font-weight: 500;
+    }
+  
+    .img-clock {
+      margin-right:6px;
+      width:13px !important;
+    }
+  
+    .header-list-recipes {
+      width:100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding:10px;
+      padding-top:15px;
+      padding-bottom:15px;
+      font-family:Roboto;
+      font-size:19px;
+      font-weight:500;
+      color:white;
+      background-color:#FC6A1D;
+      position:fixed;
+    }
+  
+    .voltar {
+      position: absolute;
+      left: 20px;
+      font-size: 26px;
+      background: none;
+      color: white;
+  
+    }
+  
+    .avaliacao-receita {
+      float: right;
+      margin-bottom: 12px;
+      margin-top: 8px;
+      font-size:12px;
+    }
+
+    ion-card-title {
+      margin-top:5px;
+        font-size:22px;
+    }
+
+    ion-card {
+      margin-top:70px;
+    }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,7 +9,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 })
 export class CadastroPage implements OnInit {
 
-  constructor(private http: HTTP) { }
+  constructor(private http: HTTP, private location: Location) { }
 
   ngOnInit() {
   }
@@ -37,5 +38,9 @@ export class CadastroPage implements OnInit {
        // prints Permission denied
        console.log(response.error);
      });
+  }
+
+  voltar() {
+    this.location.back();
   }
 }

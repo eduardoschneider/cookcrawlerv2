@@ -4,13 +4,13 @@
           <ion-col size="12" class="align-center flex photo">
             <div class="align-center flex">
               <div class="border-profile-picture"></div>
-              <img src="{{users.picture.data.url}}" class="profile-pic"/>
+              <img src="{{users.picture.data.url == '' ? '../../assets/profilepic.jpg':users.picture.data.url}}" class="profile-pic"/>
             </div>
           </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12" class="align-center name-tag">
-              <b>{{users.name}}</b>
+              <b>{{users.name == '' ? 'Bree Van de Kamp':users.name}}</b>
               <br/>
               <label class="description"> Gastrônomo </label>
               <label class="description" style="margin-left:5px; background-color:rgb(3, 134, 173);"> VIP </label>

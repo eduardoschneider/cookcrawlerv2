@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-preparacao-receita',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./preparacao-receita.page.scss'],
 })
 export class PreparacaoReceitaPage implements OnInit {
+  audio: any;
   slideOpts = {
     on: {
       beforeInit() {
@@ -65,9 +68,37 @@ export class PreparacaoReceitaPage implements OnInit {
       },
     }
   }
-  constructor() { }
+  constructor(public loadingCtrl: LoadingController, public location: Location) { }
 
   ngOnInit() {
+    this.audio = new Audio();
+    this.audio.src = '../../assets/intro-song.mp3';
+    this.audio.load();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Carregando...',
+      duration: 2000,
+      showBackdrop: true,
+      animated: true,
+      spinner: 'crescent',
+    });
+    await loading.present();
+
+    const loading2 = await this.loadingCtrl.create({
+      message: 'Atribuindo pontos...',
+      duration: 2000,
+      showBackdrop: true,
+      animated: true,
+      spinner: 'crescent',
+    });
+    await loading2.present();
+
+    const { role, data } = await loading.onDidDismiss(); loading2.onDidDismiss();
+
+    this.location.back();
+    this.location.back();
   }
 
 }
