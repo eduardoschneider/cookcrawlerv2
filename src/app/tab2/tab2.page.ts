@@ -9,7 +9,7 @@ export class Tab2Page {
   public form = [
     { val: 'Queijo', isChecked: true },
     { val: 'Presunto', isChecked: false },
-    { val: 'Farinha', isChecked: false },
+    { val: 'Espinafre', isChecked: false },
     { val: 'Leite', isChecked: true },
     { val: 'Ovos', isChecked: false },
     { val: 'Frango', isChecked: false },

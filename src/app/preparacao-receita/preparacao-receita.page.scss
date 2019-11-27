@@ -17,27 +17,30 @@
 
 .slide-image {
     display: flex;
+    -webkit-box-pack: center;
     justify-content: center;
-    width:60%;
-    height:10%;
-    font-size:30px;
+    width: 100%;
+    height: 26%;
+    background: url("../../assets/intro-recipe.jpg") center no-repeat;
+    font-size: 26px;
     font-weight: bold;
     background-color: #E23D3D;
-    border-radius:10px;
-    color:white;
-    box-shadow:0px 1px 10px black;
+    color: white;
+    box-shadow: 0px 1px 2px black;
     display: flex;
-    align-items:center;
+    -webkit-box-align: center;
+    align-items: center;
     justify-content: center;
 }
 
 .slide-content {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     width:100%;
-    height:75%;
+    height:74%;
+    margin-top:10%;
 }
 
 .swiper-slide img {
@@ -45,7 +48,6 @@
 }
 
 .title {
-    margin-top:-50px;
     font-weight: bold;
     font-size:23px;
 }
@@ -95,4 +97,13 @@
   .intro-subtitle {
       color:white;
       font-size:15px;
+  }
+
+  .end-recipe {
+      width:85%;
+      height:40px;
+      background-color:rgb(63, 155, 63);
+      color:white;
+      font-size:15px;
+      font-weight: bold;
   }
