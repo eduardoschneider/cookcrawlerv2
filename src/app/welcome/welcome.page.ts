@@ -1,6 +1,8 @@
 import { Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-welcome',
@@ -9,7 +11,8 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
 })
 export class WelcomePage implements OnInit {
   audio: any;
-  constructor(private platform: Platform, private nativeAudio: NativeAudio) { }
+  constructor(private platform: Platform, private nativeStorage: NativeStorage,
+              private nativeAudio: NativeAudio, private router: Router) { }
 
   ngOnInit() {
     this.audio = new Audio();
@@ -26,4 +29,15 @@ export class WelcomePage implements OnInit {
   stopAudio() {
     this.audio.pause();
   }
-}
+
+  next() {
+    this.platform.ready().then(() => {
+      this.nativeStorage.getItem('user')
+        .then( data => {
+          this.router.navigate(['/tabs/tab1']);
+        }, err => {
+          this.router.navigate(['/tutorial']);
+        });
+      });
+    }
+  }

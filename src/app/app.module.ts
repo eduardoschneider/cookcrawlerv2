@@ -12,12 +12,12 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { LoadingController } from '@ionic/angular';
-import { HTTP } from '@ionic-native/http/ngx';
+import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -25,7 +25,8 @@ import { HTTP } from '@ionic-native/http/ngx';
     NativeStorage,
     NativeAudio,
     LoadingController,
-    HTTP,
+    HttpClient,
+    HttpParams,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
