@@ -13,7 +13,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { LoadingController } from '@ionic/angular';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
-
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,6 +27,7 @@ import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
     LoadingController,
     HttpClient,
     HttpParams,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
