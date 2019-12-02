@@ -3,14 +3,16 @@
 
 <ion-content>
   <div class="search-title">
-    <label>Selecione os ingredientes que você possui</label>
+    <label>Selecione até 5 ingredientes que você possui</label>
   </div>
+  <div class="list-container">
   <ion-list>
     <ion-item *ngFor="let entry of form">
-        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (click)="check(entry)" [disabled]="checkeds > 4"></ion-checkbox>
         <ion-label>{{entry.val}}</ion-label>
     </ion-item>
   </ion-list>
+</div>
   <div class="find-recipes">
       <button ion-button class="search-button" routerLink="/list-recipes" routerDirection="root">Procurar Receitas</button>
       <label class="info-search">A sua pesquisa será processada e exibirá as receitas que você pode realizar com os ingredientes que possui, e caso não haja nenhuma receita que você possui todos

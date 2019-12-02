@@ -7,15 +7,34 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
   public form = [
-    { val: 'Queijo', isChecked: true },
+    { val: 'Queijo', isChecked: false },
     { val: 'Presunto', isChecked: false },
     { val: 'Espinafre', isChecked: false },
-    { val: 'Leite', isChecked: true },
+    { val: 'Leite', isChecked: false },
     { val: 'Ovos', isChecked: false },
     { val: 'Frango', isChecked: false },
-    { val: 'Tomate', isChecked: true },
+    { val: 'Tomate', isChecked: false },
+    { val: 'Queijo', isChecked: false },
+    { val: 'Presunto', isChecked: false },
+    { val: 'Espinafre', isChecked: false },
+    { val: 'Leite', isChecked: false },
+    { val: 'Ovos', isChecked: false },
+    { val: 'Frango', isChecked: false },
+    { val: 'Tomate', isChecked: false },
     { val: 'Azeitona', isChecked: false }
   ];
+ public checkeds = 0;
+ public podecheck = true;
   constructor() {}
+
+  check(entry) {
+    if (this.checkeds < 5) {
+      this.checkeds++;
+      this.podecheck = true;
+    } else {
+      this.podecheck = false;
+    }
+    entry.isChecked = !this.podecheck;
+  }
 
 }
