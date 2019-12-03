@@ -32,23 +32,29 @@ export class Tab2Page {
     { val: 'Óleo', id: 29, isChecked: false },
     { val: 'Farinha de Trigo', id: 30, isChecked: false },
     { val: 'Fermento', id: 31, isChecked: false }];
+
   public checkeds = 0;
+  public limit = 5;
   public podecheck = true;
   constructor(private http: HttpClient) { }
 
   check(entry) {
-    if (this.checkeds < 5) {
+    if (!entry.isChecked){
       this.checkeds++;
-      this.podecheck = true;
+      console.log(this.checkeds);
     } else {
-      this.podecheck = false;
+      this.checkeds--;
+      console.log(this.checkeds);
     }
-    entry.isChecked = !this.podecheck;
   }
 
   teste() {
     let a = 0;
-    let ing1, ing2, ing3, ing4, ing5;
+    let ing1 = 7;
+    let ing2 = 7;
+    let ing3 = 7;
+    let ing4 = 7;
+    let ing5 = 7;
     for (let entry of this.form) {
       if (entry.isChecked) {
         if (a === 0) {
@@ -73,11 +79,11 @@ export class Tab2Page {
         }
       }
     }
-    const params = new HttpParams().set('ing1', ing1)
-      .set('ing2', ing2)
-      .set('ing3', ing3)
-      .set('ing4', ing4)
-      .set('ing5', ing5);
+    const params = new HttpParams().set('ing1', ing1 + '')
+      .set('ing2', ing2 + '')
+      .set('ing3', ing3 + '')
+      .set('ing4', ing4 + '')
+      .set('ing5', ing5 + '');
     this.http.get('http://localhost/cookcrawlerapi/api/recipes/getTeste', { params: params })
       .subscribe(data => {
         console.log(data);

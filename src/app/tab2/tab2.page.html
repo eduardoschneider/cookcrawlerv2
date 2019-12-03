@@ -6,12 +6,12 @@
     <label>Selecione até 5 ingredientes que você possui</label>
   </div>
   <div class="list-container">
-  <ion-list>
-    <ion-item *ngFor="let entry of form">
-        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (click)="check(entry)" [disabled]="checkeds > 4"></ion-checkbox>
-        <ion-label>{{entry.val}}</ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-list>
+      <ion-item *ngFor="let entry of form">
+          <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (click)="check(entry)" [disabled]="!entry.isChecked && checkeds === limit"></ion-checkbox>
+          <ion-label>{{entry.val}}</ion-label>
+      </ion-item>
+    </ion-list>
 </div>
   <div class="find-recipes">
       <button ion-button class="search-button" routerLink="/list-recipes" routerDirection="root" (click)="teste()">Procurar Receitas</button>

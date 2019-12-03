@@ -14,11 +14,7 @@ export class Tab1Page implements OnInit {
   ranking;
   money;
   ngOnInit() {
-    let user = this.single.getUser;
-    this.points = user.points;
-    this.ranking = this.single.set2(7);
-    this.money = this.single.set3(21);
-
+    
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.single.saveUser(this.router.getCurrentNavigation().extras.state.user,
