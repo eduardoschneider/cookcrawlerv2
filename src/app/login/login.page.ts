@@ -4,6 +4,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { LoadingController } from '@ionic/angular';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { SingletonService } from '../singleton.service';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class LoginPage implements OnInit {
   userExists: any;
-  beingLoged: any;
+  beingLoged: { id: number, name: string, age: number, email: string, password: string, points: number, money_saved: number};
+  currentEmail;
   isLoggedIn = false;
 
   constructor(private fb: Facebook, private router: Router, private http: HttpClient,
-    private nativeStorage: NativeStorage, public loadingCtrl: LoadingController) { }
+    private nativeStorage: NativeStorage, public loadingCtrl: LoadingController, private single: SingletonService) { }
 
   ngOnInit() {
 
@@ -40,7 +42,7 @@ export class LoginPage implements OnInit {
       .then((res: FacebookLoginResponse) => {
         this.isLoggedIn = true;
         this.getUserDetail(res.authResponse.userID);
-        this.checkExistingUser(this.beingLoged.email);
+        this.checkExistingUser(this.currentEmail);
         this.router.navigate(["/tabs/tab1"]);
       })
       .catch(e => {
@@ -54,18 +56,12 @@ export class LoginPage implements OnInit {
   getUserDetail(userid: any) {
     this.fb.api('/' + userid + '/?fields=id,email,name,picture', ['public_profile'])
       .then(res => {
-        res.picture = "https://graph.facebook.com/" + userid + "/picture?type=large";
-        this.nativeStorage.setItem('facebook_user',
-          {
-            name: res.name,
-            email: res.email,
-            picture: res.picture
-          })
-          .then(() => {
-            this.beingLoged = res;
-          }, error => {
-            console.log(error);
-          })
+        this.beingLoged.name = res.name;
+        this.beingLoged.email = res.email;
+        this.beingLoged.id = res.id;
+
+        this.currentEmail = res.email;
+        //res.picture = "https://graph.facebook.com/" + userid + "/picture?type=large";
       }).catch(e => {
         console.log(e);
       });
@@ -74,22 +70,36 @@ export class LoginPage implements OnInit {
   checkExistingUser(email) {
 
     const params = new HttpParams().set('email', email);
-    this.http.get('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/get', { params: params })
+    this.http.get('http://localhost/cookcrawlerapi/api/users/get', { params: params })
       .subscribe(data => {
         this.userExists = data;
         for (let entry of this.userExists) {
             this.beingLoged = entry;
+            this.nativeStorage.setItem('user', {user: this.beingLoged})
+            .then(
+              () => console.log('Stored item!'),
+              error => console.error('Error storing item', error)
+            );
             return true;
         }
-
+        this.beingLoged.age = 18;
+        this.beingLoged.password = '12345';
+        this.beingLoged.points = 0;
+        this.beingLoged.money_saved = 0;
         const params2 = new HttpParams().set('name', this.beingLoged.name)
-                                        .set('age', '18')
+                                        .set('age', this.beingLoged.age + '')
                                         .set('email', this.beingLoged.email)
-                                        .set('password', '12345')
-                                        .set('points', '0')
-                                        .set('money_saved', '0');
-        this.http.post('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/insert', { params: params })
-          .subscribe(data => {  });
+                                        .set('password', this.beingLoged.password)
+                                        .set('points', this.beingLoged.points + '')
+                                        .set('money_saved', this.beingLoged.money_saved + '');
+        this.http.post('http://localhost/cookcrawlerapi/api/users/insert', { params: params2 })
+          .subscribe(data => {
+            this.nativeStorage.setItem('user', {user: this.beingLoged})
+            .then(
+              () => console.log('Stored item!'),
+              error => console.error('Error storing item', error)
+            );
+          });
 
         return false;
       });

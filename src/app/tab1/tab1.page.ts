@@ -13,9 +13,9 @@ export class Tab1Page implements OnInit {
   points;
   ranking;
   money;
-
   ngOnInit() {
-    this.points = this.single.set(5);
+    let user = this.single.getUser;
+    this.points = user.points;
     this.ranking = this.single.set2(7);
     this.money = this.single.set3(21);
 
