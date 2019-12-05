@@ -24,21 +24,21 @@
   <div class="text-before-option">
     <div class="container-login">
         <div class="material-textfield">
-          <input id="nome-textfield" class="field-spacement" placeholder=" " type="text">
+          <input id="nome-textfield" class="field-spacement" placeholder=" " value="{{this.emailNormal}}" type="text">
           <label id="nome">E-mail</label>
         </div>
         <div class="material-textfield">
-          <input id="nome-textfield" class="field-spacement" placeholder=" " type="password">
+          <input id="nome-textfield" class="field-spacement" placeholder=" " value="{{this.passwordNormal}}" type="password">
           <label id="nome">Senha</label>
         </div>
-        <button ion-button class="button-login" routerLink="/tabs/tab1" routerDirection="root">Entrar</button>
+        <button ion-button class="button-login" (click)="loginNormal()">Entrar</button>
         <div class="terms">Não possui uma conta? <b routerLink="/cadastro" routerDirection="root">Cadastre-se</b>.</div>
       </div>
        <div class="go-to-bottom">
          <span class="or-enter-with">ou</span>
          <div class="login-type-button">
             <button ion-button class="button-login-facebook" (click)="onLoginFacebook()"><img src="../../assets/fb.png" width="24px" style="margin-right:10px;"/> Entrar com Facebook</button>
-        </div>
+          </div>
         <span class="copyright">© Copyright 2019 Eduardo Schneider - All Rights Reserved</span>
        </div>
   </div>

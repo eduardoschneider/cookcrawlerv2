@@ -31,6 +31,7 @@ export class WelcomePage implements OnInit {
   }
 
   next() {
+    this.stopAudio();
     this.platform.ready().then(() => {
       this.nativeStorage.getItem('user')
         .then( data => {

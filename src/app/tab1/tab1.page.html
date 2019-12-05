@@ -4,13 +4,13 @@
           <ion-col size="12" class="align-center flex photo">
             <div class="align-center flex">
               <div class="border-profile-picture"></div>
-              <img src="{{users.picture.data.url == '' ? '../../assets/profilepic.jpg':users.picture.data.url}}" class="profile-pic"/>
+              <img src="" class="profile-pic"/>
             </div>
           </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12" class="align-center name-tag">
-              <b>{{users.name == '' ? 'Bree Van de Kamp':users.name}}</b>
+              <b>{{this.nome}}</b>
               <br/>
               <label class="description"> Gastrônomo </label>
               <label class="description" style="margin-left:5px; background-color:rgb(3, 134, 173);"> VIP </label>
@@ -21,17 +21,17 @@
             <ion-col size="4" class="align-center icon-margin star">
               <img src="../../assets/star.svg" width="32px"/>
               <br/>
-              <span style="font-size:12px;">{{points}}/70</span>
+              <span style="font-size:12px;">{{this.ponto}} pts</span>
             </ion-col>
             <ion-col size="4" class="align-center icon-margin award">
               <img src="../../assets/award.svg" width="32px"/>
               <br/>
-              <span style="font-size:12px;">{{ranking}}º</span>
+              <span style="font-size:12px;">{{10000 - this.ponto}}º</span>
             </ion-col>
             <ion-col size="4" class="align-center icon-margin money">
               <img src="../../assets/money.svg" width="32px"/>
               <br/>
-              <span style="font-size:12px;">R${{money}},00</span>
+              <span style="font-size:12px;">R$ {{this.money}},00</span>
             </ion-col>
           </ion-row>
         </ion-grid>

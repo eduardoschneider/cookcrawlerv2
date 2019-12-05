@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SingletonService } from '../singleton.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -8,21 +9,23 @@ import { SingletonService } from '../singleton.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  users = { id: '', name: '', email: '', picture: { data: { url: '' } } };
-  constructor(private route: ActivatedRoute, private router: Router, private single: SingletonService) {  }
-  points;
-  ranking;
-  money;
+  constructor(private route: ActivatedRoute, private router: Router, private single: SingletonService,
+              private nativeStorage: NativeStorage) {  }
+  nome = '';
+  ponto = '';
+  money = '';
+  email = '';
   ngOnInit() {
-    
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.single.saveUser(this.router.getCurrentNavigation().extras.state.user,
-         'https://graph.facebook.com/' + this.router.getCurrentNavigation().extras.state.user.id + '/picture?width=1024&height=1024');
-      }
-    });
-
-    this.users = this.single.getUser();
+    this.nativeStorage.getItem('user')
+    .then(
+      data => {
+        this.nome = data.name;
+        this.ponto = data.email;
+        this.money = data.money_saved;
+        this.ponto = data.points;
+      },
+      error => console.error(error)
+    );
   }
 
 }

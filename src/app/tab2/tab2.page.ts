@@ -84,7 +84,7 @@ export class Tab2Page {
       .set('ing3', ing3 + '')
       .set('ing4', ing4 + '')
       .set('ing5', ing5 + '');
-    this.http.get('http://localhost/cookcrawlerapi/api/recipes/getTeste', { params: params })
+    this.http.get('http://sealsteamcoding.com.br/cookcrawlerapi/api/recipes/getTeste', { params: params })
       .subscribe(data => {
         console.log(data);
         return false;
