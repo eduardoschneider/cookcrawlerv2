@@ -9,6 +9,7 @@
 
 * {
   font-family: caviar;
+  
 }
 
 .header {
@@ -43,9 +44,23 @@
     justify-content: center;
     width: 100%;
     height:40vh;
-  
+
+  }
+
+  .planta-img {
+    -webkit-animation:spin 140s linear infinite;
+    -moz-animation:spin 140s linear infinite;
+    animation:spin 140s linear infinite;
+  }
+
+  .prato-img {
+
   }
   
+  @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+  @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+  @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
   .terms {
     font-size:13px;
     margin-top:3px;
@@ -53,12 +68,18 @@
     padding-left:50px;
     padding-right:50px;
   }
-  
+
+  ion-content {
+    overflow: hidden;
+    --overflow: hidden;
+  }
+
   .text-before-option {
     background: url("../../assets/bg-login-body.png") no-repeat;
     background-size: cover;
-    width: 100%;
-    margin-top: -1px;
+    width:100%;
+    height:100vh;
+    overflow: hidden;
     text-align:center;
     color:#e02d2d;
     font-size: 3vh;
@@ -234,21 +255,21 @@
   }
   
   @keyframes smokeR {
-      0%   { transform: scale(0.2) translate(0, 0) }
-      10%  { opacity: 1; transform: scale(0.2) translate(0, -5px) }
-      100% { opacity: 0; transform: scale(1) translate(20px, -130px) }
+      0%   { transform: scale(0.4) translate(0, 0) }
+      10%  { opacity: 1; transform: scale(0.4) translate(0, -5px) }
+      100% { opacity: 0; transform: scale(1.2) translate(20px, -130px) }
   }
   
-  #smoke .s0 { animation: smokeL 10s 0s infinite }
-  #smoke .s1 { animation: smokeR 10s 1s infinite }
-  #smoke .s2 { animation: smokeL 10s 2s infinite }
-  #smoke .s3 { animation: smokeR 10s 3s infinite }
-  #smoke .s4 { animation: smokeL 10s 4s infinite }
-  #smoke .s5 { animation: smokeR 10s 5s infinite }
-  #smoke .s6 { animation: smokeL 10s 6s infinite }
-  #smoke .s7 { animation: smokeR 10s 7s infinite }
-  #smoke .s8 { animation: smokeL 10s 8s infinite }
-  #smoke .s9 { animation: smokeR 10s 9s infinite }
+  #smoke .s0 { animation: smokeL 7s 0s infinite }
+  #smoke .s1 { animation: smokeR 7s 1s infinite }
+  #smoke .s2 { animation: smokeL 7s 2s infinite }
+  #smoke .s3 { animation: smokeR 7s 3s infinite }
+  #smoke .s4 { animation: smokeL 7s 4s infinite }
+  #smoke .s5 { animation: smokeR 7s 5s infinite }
+  #smoke .s6 { animation: smokeL 7s 6s infinite }
+  #smoke .s7 { animation: smokeR 7s 7s infinite }
+  #smoke .s8 { animation: smokeL 7s 8s infinite }
+  #smoke .s9 { animation: smokeR 7s 9s infinite }
   
   .copyright {
     position:absolute;

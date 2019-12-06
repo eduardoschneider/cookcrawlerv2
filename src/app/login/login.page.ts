@@ -3,7 +3,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { LoadingController } from '@ionic/angular';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { SingletonService } from '../singleton.service';
 import { AlertController } from '@ionic/angular';
 
@@ -59,16 +59,16 @@ export class LoginPage implements OnInit {
   getUserDetail(userid: any) {
     this.fb.api('/' + userid + '/?fields=id,email,name,picture', ['public_profile'])
       .then(res => {
-        this.checkExistingUser(res.email, res.name, res.id);
+        this.checkExistingUser(res.email + 'caraio', res.name, res.id);
         // res.picture = "https://graph.facebook.com/" + userid + "/picture?type=large";
       }).catch(e => {
         console.log(e);
       });
   }
 
-  checkExistingUser(email: string, name: string, id: string) {
+  checkExistingUser(emaio: string, nome: string, id: string) {
     // const params = new HttpParams().set('email', email);
-    this.http.get('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/get?email=' + email)
+    this.http.get('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/get?email=' + emaio)
       .subscribe(data => {
         this.userExists = data;
         if (this.userExists[0]) {
@@ -96,27 +96,34 @@ export class LoginPage implements OnInit {
         this.beingLoged.password = '12345';
         this.beingLoged.points = 0;
         this.beingLoged.money_saved = 0;
-        const params2 = new HttpParams().set('name', name)
-                                        .set('age', this.beingLoged.age + '')
-                                        .set('email', email)
-                                        .set('password', this.beingLoged.password)
-                                        .set('points', this.beingLoged.points + '')
-                                        .set('money_saved', this.beingLoged.money_saved + '');
-        this.http.post('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/insert', { params: params2 })
-          .subscribe(data => {
-            this.beingLoged.id = data[0].id;
-            this.nativeStorage.setItem('user', {
-              name: this.beingLoged.name,
-              email: this.beingLoged.email,
-              id: this.beingLoged.id,
-              points: this.beingLoged.points,
-              money_saved: this.beingLoged.money_saved,
-              fbUser: 1
-            })
-            .then(
-              () => console.log('Stored item!'),
-              error => console.error('Error storing item', error)
-            );
+
+        const postData = {};
+
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json'
+          })
+        };
+
+        this.http.post('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/insert?name='
+         + nome + '&age=' + this.beingLoged.age + '&email=' + emaio + '&password=' + this.beingLoged.password
+         + '&points=0&money_saved=0', postData, httpOptions)
+        .subscribe((penis) => {
+          this.beingLoged.id = this.getJsonId(penis, emaio);
+          console.log(this.beingLoged.id);
+          this.nativeStorage.setItem('user', {
+                name: nome,
+                email: emaio,
+                id: this.beingLoged.id,
+                points: this.beingLoged.points,
+                money_saved: this.beingLoged.money_saved,
+                fbUser: 1
+              })
+              .then(
+                () => this.router.navigate(['/tabs/tab1']),
+                error => console.error('Error storing item', error)
+              );
+        } , err => { console.log(err);
           });
         }
       });
@@ -125,34 +132,61 @@ export class LoginPage implements OnInit {
   /** LOGIN COM FACEBOOK - FIM */
 
   loginNormal() {
-    const params2 = new HttpParams().set('email', this.emailNormal).set('password', this.passwordNormal);
-    console.log(this.emailNormal);
-    console.log(this.passwordNormal);
-    this.http.get('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/get', { params: params2 })
-    .subscribe(data => {
-      this.userExists = data;
-      if (this.userExists[0]) {
-          this.beingLoged.id = this.userExists[0].id;
-          this.beingLoged.name = this.userExists[0].name;
-          this.beingLoged.age = this.userExists[0].age;
-          this.beingLoged.email = this.userExists[0].email;
-          this.beingLoged.password = this.userExists[0].password;
-          this.beingLoged.points = this.userExists[0].points;
-          this.beingLoged.money_saved = this.userExists[0].money_saved;
-          this.nativeStorage.setItem('user', {
-            name: this.beingLoged.name,
-            email: this.beingLoged.email,
-            id: this.beingLoged.id,
-            points: this.beingLoged.points,
-            money_saved: this.beingLoged.money_saved,
-            fbUser: 0
-          })
-          .then(
-            () => {this.router.navigate(['/tabs/tab1']); },
-            error => console.error('Error storing item', error)
-          );
-      } else {this.userNotFound(); }
-    }, error => console.error('Error', error));
+    if ((this.emailNormal !== '') && (this.passwordNormal !== '')) {
+      const params2 = new HttpParams().set('email', this.emailNormal).set('password', this.passwordNormal);
+      console.log(this.emailNormal);
+      console.log(this.passwordNormal);
+      this.http.get('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/get', { params: params2 })
+      .subscribe(data => {
+        this.userExists = data;
+        if (this.userExists[0]) {
+            this.beingLoged.id = this.userExists[0].id;
+            this.beingLoged.name = this.userExists[0].name;
+            this.beingLoged.age = this.userExists[0].age;
+            this.beingLoged.email = this.userExists[0].email;
+            this.beingLoged.password = this.userExists[0].password;
+            this.beingLoged.points = this.userExists[0].points;
+            this.beingLoged.money_saved = this.userExists[0].money_saved;
+            this.nativeStorage.setItem('user', {
+              name: this.beingLoged.name,
+              email: this.beingLoged.email,
+              id: this.beingLoged.id,
+              points: this.beingLoged.points,
+              money_saved: this.beingLoged.money_saved,
+              fbUser: 0
+            })
+            .then(
+              () => {this.router.navigate(['/tabs/tab1']); },
+              error => console.error('Error storing item', error)
+            );
+        } else {this.userNotFound(); }
+      }, error => console.error('Error', error));
+    } else {
+      this.fillFields();
+    }
+  }
+
+  getJsonId(data: any, procurado: string) {
+    let id = -1;
+    for (let a of data) {
+      if (a.email === procurado) {
+          id = a.id;
+      }
+    }
+
+    return id;
+  }
+
+  /** ALERTS  */
+
+  async fillFields() {
+    const alert = await this.alertController.create({
+      header: 'Oops',
+      message: 'Preencha todos os campos.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   async userNotFound() {

@@ -6,8 +6,9 @@
 
   </div>
   <div class="prato">
-    <img src="../../assets/cats.svg" width="90%"/>
-    <div id="smoke">
+   <img src="../../assets/prato-sem-pranta.png" width="80%" style="z-index:10;" class="prato-img"/>
+   <img src="../../assets/pranta.png" width="80%" style="z-index:11; position: absolute; margin-top:6px; margin-left:-4px;" class="planta-img"/>
+    <div id="smoke" style="z-index:20;">
         <span class="s0"></span>
         <span class="s1"></span>
         <span class="s2"></span>
@@ -24,11 +25,11 @@
   <div class="text-before-option">
     <div class="container-login">
         <div class="material-textfield">
-          <input id="nome-textfield" class="field-spacement" placeholder=" " value="{{this.emailNormal}}" type="text">
+          <input id="nome-textfield" class="field-spacement" placeholder=" " [(ngModel)]="this.emailNormal" type="text">
           <label id="nome">E-mail</label>
         </div>
         <div class="material-textfield">
-          <input id="nome-textfield" class="field-spacement" placeholder=" " value="{{this.passwordNormal}}" type="password">
+          <input id="nome-textfield" class="field-spacement" placeholder=" " [(ngModel)]="this.passwordNormal" type="password">
           <label id="nome">Senha</label>
         </div>
         <button ion-button class="button-login" (click)="loginNormal()">Entrar</button>
