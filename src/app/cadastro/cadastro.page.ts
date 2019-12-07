@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HTTP } from '@ionic-native/http/ngx';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,39 +11,69 @@ import { Location } from '@angular/common';
   styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
-
-  constructor(private http: HTTP, private location: Location) { }
+  nome: string;
+  email: string;
+  idade: string;
+  senha: string;
+  constructor(private location: Location, private router: Router, private http: HttpClient,
+              public loadingCtrl: LoadingController, private alertController: AlertController) { }
 
   ngOnInit() {
+    this.nome = '';
+    this.email = '';
+    this.idade = '';
+    this.senha = '';
   }
 
-  inserir() {
-    this.http.post(
-      'http://sealsteamcoding.com.br/cookcrawlerapi/api/users/insert',
-      {name: 'teste', age: 22, email: 'teste@teste.teste', password: 'asdasd', points: 200, money_saved: '400'},
-            { Authorization: 'OAuth2: token' } // Headers
-     )
-     .then(response => {
-        // prints 200
-        console.log(response.status);
-        try {
-          response.data = JSON.parse(response.data);
-          // prints test
-          console.log(response.data.message);
-        } catch(e) {
-          console.error('JSON parsing error');
-        }
-     })
-     .catch(response => {
-       // prints 403
-       console.log(response.status);
- 
-       // prints Permission denied
-       console.log(response.error);
-     });
+  async inserir() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Carregando...',
+      duration: 3000,
+      showBackdrop: true,
+      animated: true,
+      spinner: 'crescent',
+    });
+    await loading.present();
+
+    if ((this.nome !== '') && (this.nome !== '') && (this.nome !== '') && (this.nome !== '')) {
+    const postData = {};
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    this.http.post('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/insert?name='
+    + this.nome + '&age=' + this.idade + '&email=' + this.email + '&password=' + this.senha
+    + '&points=0&money_saved=0', postData, httpOptions).subscribe((penis) => {
+      this.sucess();
+      this.router.navigate(['/login']);
+      }, err => { console.log(err); });
+    } else  {
+        this.fillFields();
+    }
   }
 
   voltar() {
     this.location.back();
+  }
+
+  async fillFields() {
+    const alert = await this.alertController.create({
+      header: 'Oops',
+      message: 'Preencha todos os campos.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async sucess() {
+    const alert = await this.alertController.create({
+      header: 'Bem-vindo!',
+      message: 'Usuário cadastrado com sucesso!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
