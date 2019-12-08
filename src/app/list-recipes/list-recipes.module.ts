@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ListRecipesPageRoutingModule } from './list-recipes-routing.module';
-
 import { ListRecipesPage } from './list-recipes.page';
 
 @NgModule({

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router, NavigationExtras } from '@angular/router';
+import { SingletonService } from '../singleton.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -36,7 +39,9 @@ export class Tab2Page {
   public checkeds = 0;
   public limit = 5;
   public podecheck = true;
-  constructor(private http: HttpClient) { }
+  recipes: any;
+  constructor(private http: HttpClient, private router: Router, private single: SingletonService,
+              public loadingController: LoadingController) { }
 
   check(entry) {
     if (!entry.isChecked){
@@ -48,7 +53,19 @@ export class Tab2Page {
     }
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Caçando receitas!',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+
+  }
+
   teste() {
+    this.presentLoading();
     let a = 0;
     let ing1 = 7;
     let ing2 = 7;
@@ -86,8 +103,9 @@ export class Tab2Page {
       .set('ing5', ing5 + '');
     this.http.get('http://sealsteamcoding.com.br/cookcrawlerapi/api/recipes/getTeste', { params: params })
       .subscribe(data => {
-        console.log(data);
-        return false;
+        this.recipes = data;
+        this.single.set4(data);
+        this.router.navigate(['/list-recipes']);
       });
   }
 

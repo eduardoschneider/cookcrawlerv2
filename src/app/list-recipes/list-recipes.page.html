@@ -1,26 +1,24 @@
 <ion-header>
-
-</ion-header>
-
-<ion-content class="background-list-recipes">
-
   <div class="header-list-recipes">
-    <button ion-button class="voltar" (click)="voltar()"><</button><label>Receitas</label>
+      <button ion-button class="voltar" (click)="voltar()"><</button><label>Receitas</label>
   </div>
-
-  <ion-card (click)="start()">
-    <ion-card-header>
-    </ion-card-header>
-    
-    <ion-card-content>
-      <ion-card-title>Salada de Espinafre</ion-card-title>
-      <div class="divisoria"><div class="line"></div></div>
-      Uma deliciosa salada de espinafre, frango e romã, super simples de fazer e que vai agradar seu paladar com seu sabor único.
-      <label class="avaliacao-receita">⭐⭐⭐⭐⭐ (5.0)</label>
-    </ion-card-content>
-    <div class="card-bottom">
-      <label class="tempo-preparo"><img src="../../assets/clock.svg" class="img-clock"/><b> Tempo de preparo: 15 minutos </b></label>
-    </div>
-  </ion-card>
-
+</ion-header>
+<ion-content>
+  <ion-virtual-scroll [items]="data">
+    <ion-card (click)="start(recipe.idrecipes)" *virtualItem="let recipe">
+      <ion-card-header>
+          
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-card-title>{{recipe.recipe_name}}</ion-card-title>
+        <div class="divisoria"><div class="line"></div></div>
+        {{recipe.recipe_description}}
+        <label class="avaliacao-receita">⭐⭐⭐⭐⭐ (5.0)</label>
+      </ion-card-content>
+      <div class="card-bottom">
+        <label class="tempo-preparo"><img src="../../assets/clock.svg" class="img-clock"/><b> Tempo de preparo: 15 minutos </b></label>
+      </div>
+    </ion-card>
+  </ion-virtual-scroll>
 </ion-content>

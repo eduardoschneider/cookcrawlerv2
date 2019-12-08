@@ -10,8 +10,7 @@
     .background-list-recipes {
       background-image: none;
       background-color:white;
-      height: 99vh;
-      overflow-y: auto;
+      height: 100%;
     }
   
     ion-card-header  {
@@ -95,5 +94,13 @@
     }
 
     ion-card {
-      margin-top:70px;
+      margin-top:30px !important;
+      margin-bottom:35px !important;
+    }
+
+    ion-virtual-scroll {
+      margin-bottom:35px !important;
+      --margin-bottom:35px !important;
+      margin-top:35px !important;
+      --margin-top:35px !important;
     }

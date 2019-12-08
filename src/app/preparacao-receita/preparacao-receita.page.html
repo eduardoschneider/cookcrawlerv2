@@ -5,7 +5,7 @@
     <ion-slides style="height:100vh; background-image: url('../../assets/bg-tutorial.png');" pager="true" [options]="slideOpts">
         <ion-slide class="slide intro" style="align-items: flex-start !important;"> 
             <div class="intro-header">
-                 <label class="intro-title">Salada de Espinafre</label>
+                 <label class="intro-title">{{receita[0].recipe_name}}</label>
                  <label class="intro-subtitle">por Eduardo Schneider</label>   
             </div>
         </ion-slide>
@@ -18,14 +18,8 @@
                 <label class="title">Para essa receita precisaremos de:</label>
                 <br/>
                 <span class="content">
-                    1 maço de espinafre<br/>
-                    1 cenoura ralada<br/>
-                    1 tomate ou outra fruta<br/>
-                    1/2 pepino<br/>
-                    1/2 suco de limão<br/>
-                    Palmito <b>(opcional)</b><br/>
-                    Sal & Azeite<br/>
-                    <br/>
+                  <div [innerHtml]="slide1(receita[0].recipe_description)"></div>
+                    
                     Separe esses ingredientes antes de prosseguir!
                 </span>
             </div>
@@ -39,11 +33,9 @@
                 <label class="title">Com tudo em mãos, vamos começar!</label>
                 <br/>
                 <span class="content">
-                    Primeiro, corte o pepino e o tomate em vários pedacinhos pequenos.<br/><br/>
-                    Se você optou por usar outra fruta, ou mais frutas, faça o mesmo procedimento de forma que os pedaços fiquem pequenos o suficiente para se misturarem.
-                    <br/>
-                    <br/>
-                    <b>Adicione tudo na tigela!</b>
+                    <div [innerHtml]="slide2(receita[0].recipe_description)"></div>
+                    <br><br>
+                    Com isso feito, podemos prosseguir para a próxima etapa!
                 </span>
             </div>
         </ion-slide>
@@ -56,26 +48,37 @@
                 <label class="title">Próxima etapa!</label>
                 <br/>
                 <span class="content">
-                    Adicione a cenoura ralada na tigela já com os vegetais e frutas anteriores, e por fim, adicione o espinafre.
-                    <br/><br/>
-                    Se você tiver palmito, agora é a hora de adicioná-lo para um sabor ainda mais diferenciado!
+                    <div [innerHtml]="slide3(receita[0].recipe_description)"></div>
+                    <br><br>
+                    Após ter feito isso, vamos lá!
                 </span>
             </div>
         </ion-slide>
 
         <ion-slide class="slide">
+                <div class="slide-image">
+                    4º passo
+                </div>
+                <div class="slide-content">
+                    <label class="title">Quase acabando!</label>
+                    <br/>
+                    <span class="content">
+                        <div [innerHtml]="slide4(receita[0].recipe_description)"></div>
+                        <br><br>
+                        E agora, vamos para a última parte!
+                    </span>
+                </div>
+            </ion-slide>
+
+        <ion-slide class="slide">
             <div class="slide-image">
-                4º passo
+                5º passo
             </div>
             <div class="slide-content">
                 <label class="title">E para terminar...</label>
                 <br/>
                 <span class="content">
-                    Acrescente o suco de limão distribuindo uniformemente pela a tigela.
-                    <br/><br/>
-                    Adicione duas pitadas de sal e mexa bem para que o tempero atinja todos os ingredientes. <br/>
-                    <br/>
-                    Ao terminar de mexer, despeje um fio de azeite pela salada e mexa novamente.
+                    <div [innerHtml]="slide5(receita[0].recipe_description)"></div>
                     <br/><br/>
                     <button ion-button class="end-recipe" (click)="presentLoading()">Finalizar</button>
                 </span>

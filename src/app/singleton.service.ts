@@ -11,6 +11,8 @@ export class SingletonService {
 
   users = { id: '', name: '', email: '', picture: { data: { url: '' } } };
   userPic;
+  data = [];
+  recipe = [];
   constructor() {
     console.log('Hello Singleton Provider');
   }
@@ -28,6 +30,24 @@ export class SingletonService {
   set2(data) {
     this.ranking -= data;
     return this.ranking;
+  }
+
+  set4(data) {
+    this.data = data;
+  }
+
+  set5(data) {
+    console.log('Dado antes de inserir: ' + this.data);
+    this.recipe = data;
+  }
+
+  get() {
+    return this.data;
+  }
+
+  get1() {
+    console.log('Dado retornado: ' + this.data);
+    return this.recipe;
   }
 
   saveUser(data, image) {
