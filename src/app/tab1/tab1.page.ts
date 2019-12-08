@@ -15,12 +15,14 @@ export class Tab1Page implements OnInit {
   ponto = '';
   money = '';
   email = '';
-  ngOnInit() {
+  ngOnInit() { }
+
+  ionViewWillEnter() {
     this.nativeStorage.getItem('user')
     .then(
       data => {
         this.nome = data.name;
-        this.ponto = data.email;
+        this.email = data.email;
         this.money = data.money_saved;
         this.ponto = data.points;
       },

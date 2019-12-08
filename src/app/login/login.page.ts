@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { LoadingController } from '@ionic/angular';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
   getUserDetail(userid: any) {
     this.fb.api('/' + userid + '/?fields=id,email,name,picture', ['public_profile'])
       .then(res => {
-        this.checkExistingUser(res.email + 'caraio', res.name, res.id);
+        this.checkExistingUser(res.email, res.name, res.id);
         // res.picture = "https://graph.facebook.com/" + userid + "/picture?type=large";
       }).catch(e => {
         console.log(e);
@@ -146,6 +146,7 @@ export class LoginPage implements OnInit {
             this.beingLoged.email = this.userExists[0].email;
             this.beingLoged.password = this.userExists[0].password;
             this.beingLoged.points = this.userExists[0].points;
+            console.log(this.beingLoged.points);
             this.beingLoged.money_saved = this.userExists[0].money_saved;
             this.nativeStorage.setItem('user', {
               name: this.beingLoged.name,

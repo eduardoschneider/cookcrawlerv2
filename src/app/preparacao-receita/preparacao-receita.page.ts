@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { SingletonService } from '../singleton.service';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-preparacao-receita',
@@ -11,6 +14,15 @@ import { SingletonService } from '../singleton.service';
 export class PreparacaoReceitaPage implements OnInit {
   audio: any;
   receita: any;
+  user: any;
+  name: string;
+  id: number;
+  email: string;
+  age: number;
+  points: number;
+  money_saved: number;
+  fbUser: number;
+
   slideOpts = {
     on: {
       beforeInit() {
@@ -70,13 +82,27 @@ export class PreparacaoReceitaPage implements OnInit {
       },
     }
   }
-  constructor(public loadingCtrl: LoadingController, public location: Location, public single: SingletonService) { }
+  constructor(public loadingCtrl: LoadingController, public location: Location, public single: SingletonService,
+              private http: HttpClient, private nativeStorage: NativeStorage, public router: Router) { }
 
   ngOnInit() {
     this.receita = [];
     this.receita = this.single.get1();
     var re = '/\<br>/gi';
     this.receita[0].recipe_description = this.receita[0].recipe_description.replace(re, '<br/>');
+
+    this.nativeStorage.getItem('user')
+    .then(
+      data => {
+        this.name = data.name;
+        this.email = data.email;
+        this.id = data.id;
+        this.points = data.points;
+        this.money_saved = data.money_saved;
+        this.fbUser = data.fbUser;
+      },
+      error => console.error(error)
+    );
   }
 
   async presentLoading() {
@@ -100,8 +126,38 @@ export class PreparacaoReceitaPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss(); loading2.onDidDismiss();
 
-    this.location.back();
-    this.location.back();
+    const postData = {};
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    var newPoints: number;
+    newPoints = this.points + this.receita[0].points;
+    console.log(newPoints);
+
+    var newMoney: number;
+    newMoney = this.money_saved + this.receita[0].money_saved;
+    console.log(newPoints);
+
+    this.http.post('http://sealsteamcoding.com.br/cookcrawlerapi/api/users/updatePoints?email='
+        + this.email + '&points=' + newPoints + '&money_saved=' + newMoney, postData, httpOptions)
+      .subscribe((penis) => {
+        this.nativeStorage.setItem('user', {
+          name: this.name,
+          email: this.email,
+          id: this.id,
+          points: this.points + this.receita[0].points,
+          money_saved: this.money_saved + parseInt(this.receita[0].money_saved),
+          fbUser: this.fbUser
+        })
+        .then(
+          () => {this.router.navigate(['/tabs/tab1']); },
+          error => console.error('Error storing item', error)
+        );
+      });
   }
 
   slide1(description: string) {
