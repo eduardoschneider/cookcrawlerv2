@@ -14,6 +14,8 @@ import { LoadingController } from '@ionic/angular';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { SingletonService } from './singleton.service';
+import { UserApiService } from './API/user-api.service';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +31,7 @@ import { SingletonService } from './singleton.service';
     HttpParams,
     SingletonService,
     SocialSharing,
+    UserApiService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
